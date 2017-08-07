@@ -29,8 +29,6 @@ steps:
           image: ${{build_api}}
           environment:
             - NODE_ENV=production
-          ports:
-            - "3000:3000"
         blackbox:
           image: ${{build_blackbox}}
           depends_on:
