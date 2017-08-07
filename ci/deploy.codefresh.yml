@@ -10,3 +10,24 @@ steps:
         --application-name ${{AWS_APPLICATION_NANE}} \
         --service-name ${{AWS_SERVICE_NAME}} \
         --repository-name ${{AWS_REPOSITORY_NAME}}
+
+  build_smoke:
+    title: Build smoke docker image
+    type: build
+    image_name: smoke
+    working_directory: ./tests/smoke
+  
+  run_smoke_tests:
+    titie: run smoke tests against staging environment
+    type: composition
+    composition:
+      version: '2'
+      services:
+        smoke:
+          image: ${{build_smoke}}
+          environment:
+            - API_URL=*replace*_staging_url_*replace*
+    composition_candidates:
+      smoke:
+        image: ${{build_smoke}}
+  
