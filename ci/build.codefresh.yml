@@ -89,7 +89,7 @@ steps:
         smoke:
           image: ${{build_smoke}}
           environment:
-            - API_URL=*replace*_staging_url_*replace*
+            - API_URL=*replace*_playground_url_*replace*
     composition_candidates:
       smoke:
         image: ${{build_smb_api_smoke}}
