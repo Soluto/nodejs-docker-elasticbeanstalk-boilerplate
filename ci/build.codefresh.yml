@@ -1,0 +1,98 @@
+version: '1.0'
+steps:
+  build_api:
+    title: Build api docker image
+    type: build
+    image_name: ${{AWS_REPOSITORY_NAME}}
+    # build_arguments:
+      # - NPM_TOKEN=${{NPM_TOKEN}}
+  
+  build_blackbox:
+    title: Build blackbox docker image
+    type: build
+    image_name: blackbox
+    working_directory: ./tests/blackbox
+      
+  build_smoke:
+    title: Build smoke docker image
+    type: build
+    image_name: smoke
+    working_directory: ./tests/smoke
+  
+  run_tests:
+    title: Run BlackBox tests 
+    type: composition
+    composition:
+      version: '2'
+      services:
+        api:
+          image: ${{build_api}}
+          environment:
+            - NODE_ENV=production
+          ports:
+            - "3000:3000"
+        blackbox:
+          image: ${{build_blackbox}}
+          depends_on:
+            - api
+          environment:
+            - API_URL=http://api:3000
+          
+    composition_candidates:
+      blackbox:
+        image: ${{build_blackbox}}
+      
+  push_api_image_master:
+    title: Push api
+    type: push
+    when:
+      branch:
+        only:
+          - master
+    candidate: ${{build_api}}
+    tags:
+      - 'latest'
+      - 'dev-${{CF_SHORT_REVISION}}'
+    registry: ecr
+
+  deploy_api_image_to_playgorund:
+    title: deploy api to playground
+    image: soluto/aws-tools
+    commands: 
+      - |-
+        aws-tools create-service-version \
+          --application-name ${{AWS_APPLICATION_NANE}} \
+          --service-name ${{AWS_SERVICE_NAME}} \
+          --dockerrun-template-path ${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}/ci/Dockerrun.aws.json \
+          --version latest
+          
+        aws-tools create-dev-service-version \
+          --application-name ${{AWS_APPLICATION_NANE}} \
+          --service-name ${{AWS_SERVICE_NAME}} \
+          --dockerrun-template-path ${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}/ci/Dockerrun.aws.json \
+          --version 'dev-${{CF_SHORT_REVISION}}'
+
+        aws-tools cleanup-old-dev-images \
+          --repository-name ${{AWS_REPOSITORY_NAME}}
+
+        aws-tools deploy-web-service-version \
+          --application-name ${{AWS_APPLICATION_NANE}} \
+          --service-name ${{AWS_SERVICE_NAME}} \
+          --version latest \
+          --environment-type playground
+  run_smoke_tests:
+    titie: run smoke tests against playground environment
+    type: composition
+    composition:
+      version: '2'
+      services:
+        smoke:
+          image: ${{build_smoke}}
+          environment:
+            - API_URL=*replace*_staging_url_*replace*
+    composition_candidates:
+      smoke:
+        image: ${{build_smb_api_smoke}}
+
+
+

@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  api:
+    extends:
+      file: ../../docker-compose.yml
+      service: api
+  
+  test-runner:
+    build: .
+    depends_on:
+      - api
+    environment:
+      - API_URL=http://api:3000
+
+networks: 
+  default:

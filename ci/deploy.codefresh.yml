@@ -1,0 +1,12 @@
+version: '1.0'
+steps:
+  deploy_latest_tag_to_staging:
+    title: Deploy latest tag to staging
+    image: soluto/aws-tools
+    working_directory: IMAGE_WORK_DIR
+    commands: 
+      - |-
+        aws-tools deploy-latest-tagged-version-to-staging \
+        --application-name ${{AWS_APPLICATION_NANE}} \
+        --service-name ${{AWS_SERVICE_NAME}} \
+        --repository-name ${{AWS_REPOSITORY_NAME}}

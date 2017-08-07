@@ -1,0 +1,11 @@
+version: '1.0'
+steps:
+  Swap:
+    title: swap traffice staging and production 
+    image: soluto/aws-tools
+    working_directory: IMAGE_WORK_DIR
+    commands: 
+      - |-
+        aws-tools swap-web-service-environments \
+        --application-name ${{AWS_APPLICATION_NANE}} \
+        --service-name ${{AWS_SERVICE_NAME}}

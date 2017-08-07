@@ -1,0 +1,16 @@
+{
+  "name": "blackbox",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "mocha recursive __tests__",
+    "test:docker":"docker-compose up --build --abort-on-container-exit test-runner"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.1.1",
+    "mocha": "^3.5.0",
+    "node-fetch": "^1.7.1"
+  }
+}

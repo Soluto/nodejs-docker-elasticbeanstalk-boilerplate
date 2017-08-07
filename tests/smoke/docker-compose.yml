@@ -1,0 +1,7 @@
+version: '2'
+
+services:
+  test-runner:
+    build: .
+    environment:
+      - API_URL=http://api:3000

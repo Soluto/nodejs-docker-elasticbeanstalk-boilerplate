@@ -1,0 +1,13 @@
+{
+ "AWSEBDockerrunVersion": "1",
+ "Image": {
+   "Name": "*replace*_docker_image_repository_uri_*replace*:<CI_TAG>",
+   "Update": "true"
+ },
+ "Ports": [
+   {
+     "ContainerPort": "3000"
+   }
+ ],
+ "Volumes":[]
+}
