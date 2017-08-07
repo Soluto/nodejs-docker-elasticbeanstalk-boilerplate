@@ -90,7 +90,7 @@ steps:
             - API_URL=*replace*_playground_url_*replace*
     composition_candidates:
       smoke:
-        image: ${{build_smb_api_smoke}}
+        image: ${{build_smoke}}
 
 
 
