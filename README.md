@@ -64,15 +64,18 @@ how you want to call your service. for instance: registration-api
         * build - use YML build file location - ./ci/build.codefresh.yml
         * deploy - use YML build file location - ./ci/deploy.codefresh.yml
         * swap - use YML build file location - ./ci/swap.codefresh.yml
-    * in the general tap of your codefresh repository add the following environment variables:
-        * __AWS_ACCESS_KEY_ID__=ci-agent-1's key id (check encrypted)
-        * __AWS_SECRET_ACCESS_KEY__=ci-agent-1's secret access key (check encrypted)
-        * __AWS_REGION__=us-east-1
-        * __AWS_APPLICATION_NANE__=your application name (from before)
-        * __AWS_SERVICE_NAME__=your service name (from before)
-        * __AWS_REPOSITORY_NAME__=the repository name for the docker repository you created, including namespace (e.g soluto/sample-service)
-        * __AWS_PLAYGROUND_URL__=the url for your aws playground environment (from before)
-        * __AWS_STAGING_URL__=the url for your aws staging environment (from before)
+    * in the general tap of your codefresh repository add the following environment variables:    
+    import from text, paste this and replace values
+    ```
+        AWS_ACCESS_KEY_=ci-agent-1's key id (check encrypted)
+        AWS_SECRET_ACCESS_K=ci-agent-1's secret access key (check encrypted)
+        AWS_REGI=us-east-1
+        AWS_APPLICATION_NA=your application name (from before)
+        AWS_SERVICE_NA=your service name (from before)
+        AWS_REPOSITORY_NA=the repository name for the docker repository you created, including namespace (e.g soluto/sample-service)
+        AWS_PLAYGROUND_U=the url for your aws playground environment (from before)
+        AWS_STAGING_U=the url for your aws staging environment (from before)
+    ```
 
 6. build it,deploy it,swap it
     * run the build pipeline
