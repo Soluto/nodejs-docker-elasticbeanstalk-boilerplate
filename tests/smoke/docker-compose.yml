@@ -4,4 +4,4 @@ services:
   test-runner:
     build: .
     environment:
-      - API_URL=http://api:3000
+      - API_URL=*replace*_target_url_*replace*
