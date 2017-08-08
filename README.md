@@ -1,11 +1,11 @@
-This boilerplate includes:
+# This boilerplate includes:
 1. nodejs express service
 2. blackbox tests against the express service
 3. smoke tests against the express service after it has been deployed
 4. ci build yml files for Codefresh CI to build, test, and deploy the service to elastic beanstalk
 
         
-How to use this boilerplate:
+# How to use this boilerplate:
 1. create a repository in aws container registry to hold your service's docker image: https://console.aws.amazon.com/ecs/home?region=us-east-1#/repositories
 
 2. create the necessary elastic beanstalk environments to run your service:    
