@@ -58,7 +58,9 @@ how you want to call your service. for instance: registration-api
     ```
 5. create codefresh repository 
     * go to https://g.codefresh.io
-    * make sure your using the soluto account
+    * sign in with your github account
+    * ask someone to add you to the soluto account
+    * in the bottom left, switch to soluto account
     * create a repository from the github repo you just created
     * create 3 pipelines:
         * build - use YML build file location - ./ci/build.codefresh.yml
