@@ -7,5 +7,5 @@ steps:
     commands: 
       - |-
         aws-tools swap-web-service-environments \
-        --application-name ${{AWS_APPLICATION_NANE}} \
+        --application-name ${{AWS_APPLICATION_NAME}} \
         --service-name ${{AWS_SERVICE_NAME}}

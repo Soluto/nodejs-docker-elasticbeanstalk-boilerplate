@@ -7,7 +7,7 @@ steps:
     commands: 
       - |-
         aws-tools deploy-latest-tagged-version-to-staging \
-        --application-name ${{AWS_APPLICATION_NANE}} \
+        --application-name ${{AWS_APPLICATION_NAME}} \
         --service-name ${{AWS_SERVICE_NAME}} \
         --repository-name ${{AWS_REPOSITORY_NAME}}
 

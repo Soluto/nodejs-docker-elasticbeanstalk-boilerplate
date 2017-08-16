@@ -59,13 +59,13 @@ steps:
     commands: 
       - |-
         aws-tools create-service-version \
-          --application-name ${{AWS_APPLICATION_NANE}} \
+          --application-name ${{AWS_APPLICATION_NAME}} \
           --service-name ${{AWS_SERVICE_NAME}} \
           --dockerrun-template-path ${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}/ci/Dockerrun.aws.json \
           --version latest
           
         aws-tools create-dev-service-version \
-          --application-name ${{AWS_APPLICATION_NANE}} \
+          --application-name ${{AWS_APPLICATION_NAME}} \
           --service-name ${{AWS_SERVICE_NAME}} \
           --dockerrun-template-path ${{CF_VOLUME_PATH}}/${{CF_REPO_NAME}}/ci/Dockerrun.aws.json \
           --version 'dev-${{CF_SHORT_REVISION}}'
@@ -74,7 +74,7 @@ steps:
           --repository-name ${{AWS_REPOSITORY_NAME}}
 
         aws-tools deploy-web-service-version \
-          --application-name ${{AWS_APPLICATION_NANE}} \
+          --application-name ${{AWS_APPLICATION_NAME}} \
           --service-name ${{AWS_SERVICE_NAME}} \
           --version latest \
           --environment-type playground
