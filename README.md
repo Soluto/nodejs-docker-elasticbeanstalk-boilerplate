@@ -17,7 +17,7 @@ docker run -it -e AWS_ACCESS_KEY_ID=your-access-key -e AWS_SECRET_ACCESS_KEY=you
     
 now, lets create the service environments.    
 ```
-aws-tools create-web-service —application-name your-app-name —service-name your-service-name
+aws-tools create-web-service --application-name your-app-name --service-name your-service-name
 ```    
 * application-name:    
 elastic beanstalk application to create the environments under.    
